@@ -1,0 +1,14 @@
+<templateSet group="User">
+  <template name="calc" value="double subtotal = $SUBTOTAL_EXPR$;
+double tax = subtotal * $TAX$;
+double discount = subtotal * $DISCOUNT$;
+double total = subtotal + tax - discount + $DELIVERY$;" description="Calculation block (subtotal, tax, discount, total)" toReformat="true" toShortenFQNames="true">
+    <variable name="SUBTOTAL_EXPR" expression="" defaultValue="calculateSubtotal()" alwaysStopAt="true" />
+    <variable name="TAX" expression="" defaultValue="0.10" alwaysStopAt="true" />
+    <variable name="DISCOUNT" expression="" defaultValue="0.00" alwaysStopAt="true" />
+    <variable name="DELIVERY" expression="" defaultValue="0.0" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true"/>
+    </context>
+  </template>
+</templateSet>

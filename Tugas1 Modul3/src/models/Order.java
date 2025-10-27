@@ -5,13 +5,12 @@ import java.util.List;
 
 public class Order {
     private final List<OrderItem> items = new ArrayList<>();
-    private double taxRate = 0.10;      // 10% default
-    private double discountRate = 0.0;  // default 0%
+    private double taxRate = 0.10;
+    private double discountRate = 0.0;
     private double deliveryFee = 0.0;
     private String note = "";
 
     public void addItem(OrderItem oi) {
-        // if same item exists, increase qty
         for (OrderItem e : items) {
             if (e.getItem().getId().equals(oi.getItem().getId())) {
                 e.setQuantity(e.getQuantity() + oi.getQuantity());
@@ -32,7 +31,6 @@ public class Order {
     public void setNote(String n) { this.note = n; }
     public String getNote() { return note; }
 
-    // Added getters for read-only access (used by ReceiptPrinter)
     public double getTaxRate() { return taxRate; }
     public double getDiscountRate() { return discountRate; }
     public double getDeliveryFee() { return deliveryFee; }

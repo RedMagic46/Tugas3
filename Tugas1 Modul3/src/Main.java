@@ -16,7 +16,7 @@ public class Main {
         menu.put("B2", new MenuItem("B2", "Juice", 12000));
 
         Order order = new Order();
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("=== Menu ===");
         menu.values().forEach(m -> System.out.printf("%s - %s : %.0f%n", m.getId(), m.getName(), m.getPrice()));
@@ -24,28 +24,28 @@ public class Main {
 
         while (true) {
             System.out.print("Masukkan kode menu: ");
-            String code = sc.next();
+            String code = scanner.next();
             if (code.equalsIgnoreCase("done")) break;
             if (!menu.containsKey(code)) {
                 System.out.println("Kode tidak valid.");
                 continue;
             }
             System.out.print("Jumlah: ");
-            int qty = sc.nextInt();
+            int qty = scanner.nextInt();
             order.addItem(new OrderItem(menu.get(code), qty));
             System.out.println("Ditambahkan.");
         }
 
         System.out.print("Pakai diskon (mis 0.1 untuk 10%)? ");
-        try { order.setDiscountRate(Double.parseDouble(sc.next())); } catch (Exception ignored) {}
+        try { order.setDiscountRate(Double.parseDouble(scanner.next())); } catch (Exception ignored) {}
         System.out.print("Biaya antar (angka)? ");
-        try { order.setDeliveryFee(Double.parseDouble(sc.next())); } catch (Exception ignored) {}
-        sc.nextLine();
+        try { order.setDeliveryFee(Double.parseDouble(scanner.next())); } catch (Exception ignored) {}
+        scanner.nextLine();
         System.out.print("Catatan: ");
-        order.setNote(sc.nextLine());
+        order.setNote(scanner.nextLine());
 
         ReceiptPrinter.print(order);
-        sc.close();
+        scanner.close();
     }
 }
 
